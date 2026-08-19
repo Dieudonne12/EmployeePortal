@@ -22,6 +22,13 @@ jobs:
       run: dotnet build --no-restore --configuration Release
     - name: Run tests
       run: dotnet test EmployeePortal.Tests/EmployeePortal.Tests.csproj --no-restore --configuration Release
+    - name: Publish application
+      run: dotnet publish EmployeePortal.csproj --configuration Release --no-build --output ./publish
+    - name: Upload deployment artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: EmployeePortal
+        path: ./publish
 
 
     
